@@ -1,13 +1,28 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Src</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-  </head>
-
-  <body>
-    <%= yield %>
-  </body>
+<html lang="ja">
+<head>
+  <!-- titleを変更します -->
+  <title>home</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <!-- Style追加 -->
+  <link rel="stylesheet" href="<%= mix('/css/app.css') %>">
+</head>
+<body>
+  <div class="navbar navbar-item">
+    <%= link_to root_path, class: "navbar-item" do %>
+      <h1 class="title is-4" style="font-family: ">world recipe</h1>
+    <% end %>
+  </div>
+  #検索バー
+  
+  <div class="row">
+    <div class="col-2">
+      <%= render 'layouts/sidebar' %>
+    </div>
+    <div class="col-8">
+      <%= yield %>
+    </div>
+  </div>
+</body>
 </html>

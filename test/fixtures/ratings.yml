@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  recipe: one
+  user: one
+  rating_value: 1
+  rating_comment: MyString
+  rating_date: 2023-07-27
+
+two:
+  recipe: two
+  user: two
+  rating_value: 1
+  rating_comment: MyString
+  rating_date: 2023-07-27
