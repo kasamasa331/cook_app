@@ -7,10 +7,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-
-  
-  
-
   # レシピ
   post 'recipes/new', to: 'recipes#create', as: 'create_recipe'
   get 'recipes', to: 'recipes#index', as: 'index_recipe'
@@ -22,14 +18,15 @@ Rails.application.routes.draw do
   get 'home/country', to: 'home#country', as: 'home_country'
  
   #スライドバー
-  
 
   #ユーザーページ
   get 'users/show',to: 'users#show', as: 'users_show'
   #resources :users, only: [:show, :edit, :update]
   get '/mypage',to: 'users#mypage', as:'users_mypage'
-  get 'users/edit',to: 'users#edit', as: 'users_edit'
-  post 'users/edit',to: 'users#update', as: 'users_update'
+
+  # ユーザープロフィール
+  get '/user_profile/edit',to: 'users_profile#edit', as: 'user_profile_edit'
+  post '/user_profile/edit',to: 'users_profile#update', as: 'user_profile_update'
 
   #投稿PostsController
   get '/', to: 'posts#index', as: 'index_post'
