@@ -12,24 +12,32 @@ Rails.application.routes.draw do
   
 
   # レシピ
+  post 'recipes/new', to: 'recipes#create', as: 'create_recipe'
+  get 'recipes', to: 'recipes#index', as: 'index_recipe'
   get 'home/recipe', to: 'home#recipe', as: 'home_recipe'
+  get 'recipes/new', to: 'recipes#new', as: 'recipe_new'
 
+  
   #　国
   get 'home/country', to: 'home#country', as: 'home_country'
  
   #スライドバー
-  resources :countries
-  resources :recipes
-  resources :creators
-  resources :users
+  
 
   #ユーザーページ
   get 'users/show',to: 'users#show', as: 'users_show'
-  resources :users, only: [:show, :edit, :update]
+  #resources :users, only: [:show, :edit, :update]
   get '/mypage',to: 'users#mypage', as:'users_mypage'
+  get 'users/edit',to: 'users#edit', as: 'users_edit'
+  post 'users/edit',to: 'users#update', as: 'users_update'
 
   #投稿PostsController
   get '/', to: 'posts#index', as: 'index_post'
   get 'posts/new', to: 'posts#new', as: 'new_post'
   post 'posts/new', to: 'posts#create', as: 'create_post'
+
+  #ユーザープロフィール
+  get 'user_profiles/show',to: 'user_profiles#show', as: 'user_profile_show'
+  resources :user_profiles, only: [:show, :edit, :update]
+  get 'user_profiles/mypage',to: 'user_profiles#mypage', as:'user_profile_mypage'
 end

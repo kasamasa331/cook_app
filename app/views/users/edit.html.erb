@@ -1,25 +1,17 @@
 <h1>プロフィール編集</h1>
 
-<%= form_for @user do |f| %>
-  <!-- User モデルの属性のフォーム -->
-  <div class="form-group">
-    <%= f.label :email %>
-    <%= f.text_field :email, class: 'form-control' %>
-  </div>
+<%= form_with(model: @user_profile, url: users_update_path, local: true, method: :post, html: { class: 'recipe-form' } ) do |f| %>
 
-  <!-- UserProfile モデルの属性のフォーム -->
+
+
   <div class="form-group">
-    <%= f.fields_for :user_profile do |profile_form| %>
-      <%= profile_form.label :name %>
-      <%= profile_form.text_field :name, class: 'form-control' %>
-    <% end %>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.fields_for :user_profile do |profile_form| %>
-      <%= profile_form.label :country %>
-      <%= profile_form.text_field :country, class: 'form-control' %>
-    <% end %>
+      <%= f.label :country %>
+      <%= f.text_field :country_id, class: 'form-control' %>
   </div>
 
   <%= f.submit "保存", class: 'btn btn-primary' %>

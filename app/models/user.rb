@@ -5,5 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   #belongs_to :country　後で消すかも
 
-  has_one :user_profile 
+  has_one :user_profile, dependent: :destroy
+
+  has_many :recipes
 end

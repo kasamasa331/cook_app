@@ -4,8 +4,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
-    render :new
+    @recipe = Recipe.new
   end
 
   
@@ -22,6 +21,7 @@ class PostsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+    
   end
 
   private
