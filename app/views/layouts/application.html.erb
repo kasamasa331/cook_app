@@ -10,11 +10,18 @@
 </head>
 <body>
   <div class="navbar navbar-item">
-    <%= link_to root_path, class: "navbar-item" do %>
+    <%= link_to index_home_path, class: "navbar-item" do %>
       <h1 class="title is-4" style="font-family: ">world recipe</h1>
     <% end %>
   </div>
-  #検索バー
+  
+  <div class="search-container">
+  <%= form_with url: index_post_path, class: "form", method: :get, local: true do |form| %>
+    <input class="input" type="text" name="title" placeholder="タイトルで検索" value="<%= params[:title] %>">
+    <%= form.submit "検索", class: "button" %>
+  <% end %>
+  </div>
+
   
   <div class="row">
     <div class="col-2">

@@ -4,4 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   #belongs_to :country　後で消すかも
+
+  has_one :user_profile 
 end
