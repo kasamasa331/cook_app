@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_18_082655) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_22_072740) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_bin", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -92,6 +92,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_082655) do
     t.integer "cooking_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "cooking_method"
+    t.integer "category_id"
+    t.integer "ingredient_id"
+    t.integer "user_profile_id"
+    t.integer "type_id"
     t.index ["country_id"], name: "index_recipes_on_country_id"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end

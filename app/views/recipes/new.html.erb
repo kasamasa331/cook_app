@@ -12,9 +12,38 @@
   </div>
 
   <div class="form-group">
+    <%= f.label "作り方", class: 'form-label' %>
+    <%= f.text_area :cooking_method, class: 'form-control' %>
+  </div>  
+  
+  <div class="form-group">
     <%= f.label "国", class: 'form-label' %>
     <%= f.collection_select :country_id, Country.all, :id, :name, prompt: "選択してください", class: 'form-control' %>
   </div>
+
+  <div class="form-group">
+  <%= f.label "時間", class: 'form-label' %>
+  <%= f.text_area :cooking_time, class: 'form-control' %>
+　</div>
+
+  <div class="form-group">
+  <%= f.label "何料理", class: 'form-label' %>
+  <%= f.collection_select :category_id, Category.all, :id, :name, prompt: "選択してください", class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+  <%= f.label "料理のタイプ", class: 'form-label' %>
+  <%= f.collection_select :type_id, Type.all, :id, :name, prompt: "選択してください", class: 'form-control' %>
+  </div>
+  
+  <div class="form-group image-upload">
+  <%= f.label "画像", class: 'form-label' %>
+  <div class="image-preview" id="imagePreview">
+    <img src="" alt="Image Preview" class="image-preview__image">
+    <span class="image-preview__default-text">Image will be displayed here</span>
+  </div>
+  <%= f.file_field :image, class: 'form-control-file', id: 'imageUpload' %>
+</div>
 
   <% if flash[:alert] %>
     <div class="alert alert-danger">

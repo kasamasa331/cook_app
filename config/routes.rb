@@ -9,10 +9,9 @@ Rails.application.routes.draw do
 
   # レシピ
   post 'recipes/new', to: 'recipes#create', as: 'create_recipe'
-  get 'recipes', to: 'recipes#index', as: 'index_recipe'
   get 'home/recipe', to: 'home#recipe', as: 'home_recipe'
   get 'recipes/new', to: 'recipes#new', as: 'recipe_new'
-
+  get 'recipes/index', to: 'recipes#index', as: 'index_recipe'
   
   #　国
   get 'home/country', to: 'home#country', as: 'home_country'
