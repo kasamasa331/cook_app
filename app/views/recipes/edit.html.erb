@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mx-auto post-form-container">
+      <h2 class="h2">投稿編集</h2>
+      <%= form_with(url: update_recipe_path, model: @recipe, local: true, method: :post, html: { class: 'post-form' }) do |f| %>
+
+        <% if @recipe.errors.any? %>
+          <ul>
+            <% @recipe.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %> 
+        　</ul>
+        <% end %>
+        
+        <div class="form-group">
+            <%= f.label "料理名", class: 'form-label' %>
+            <%= f.text_field :title, class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+            <%= f.label "説明", class: 'form-label' %>
+            <%= f.text_area :description, class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+            <%= f.label "作り方", class: 'form-label' %>
+            <%= f.text_area :cooking_method, class: 'form-control' %>
+        </div>  
+        
+        <div class="form-group">
+            <%= f.label "国", class: 'form-label' %>
+            <%= f.collection_select :country_id, Country.all, :id, :name, prompt: "選択してください", class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+            <%= f.label "時間", class: 'form-label' %>
+            <%= f.text_area :cooking_time, class: 'form-control' %>
+        　</div>
+        
+        <div class="form-group">
+            <%= f.label "何料理", class: 'form-label' %>
+            <%= f.collection_select :category_id, Category.all, :id, :name, prompt: "選択してください", class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+            <%= f.label "料理のタイプ", class: 'form-label' %>
+            <%= f.collection_select :type_id, Type.all, :id, :name, prompt: "選択してください", class: 'form-control' %>
+        </div>
+            
+
+        <div class="form-group image-upload">
+          <%= f.label "画像", class: 'form-label' %>
+          <div class="image-preview" id="imagePreview">
+            <img src="<%= @recipe.image.attached? ? url_for(@recipe.image) : "" %>" alt="Image Preview" class="image-preview__image <%= @recipe.image.attached? ? "-block" : "" %>">
+            <span class="image-preview__default-text <%= @recipe.image.attached? ? "-none" : "" %>">No image uploaded</span>
+          </div>
+          <%= f.file_field :image, class: 'form-control-file', id: 'imageUpload' %>
+        </div>
+
+        <div class="button-group">
+          <!-- 以下の行を追加する -->
+          <%= link_to '削除', destroy_recipe_path(@recipe), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
+          <%= f.submit '更新', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -12,7 +12,12 @@ Rails.application.routes.draw do
   get 'home/recipe', to: 'home#recipe', as: 'home_recipe'
   get 'recipes/new', to: 'recipes#new', as: 'recipe_new'
   get 'recipes/index', to: 'recipes#index', as: 'index_recipe'
-  
+  delete 'recipes/destroy/:id', to: 'recipes#destroy', as: 'destroy_recipe'
+  get 'recipes/edit/:id', to: 'recipes#edit', as: 'edit_recipe'
+  post 'recipes/edit/:id', to: 'recipes#update', as: 'update_recipe'
+  get 'recipes/show/:id', to: 'recipes#show', as: 'recipe_show'
+  #　レシピコメント
+  post 'recipes/:id/comments', to: 'recipes#create_comment', as: 'create_comment_recipe'
   #　国
   get 'home/country', to: 'home#country', as: 'home_country'
  

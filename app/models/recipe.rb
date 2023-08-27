@@ -3,7 +3,7 @@ class Recipe < ApplicationRecord
   belongs_to :user
   belongs_to :category
   has_many :ingredient
-  belongs_to :user_profile
+  #belongs_to :user_profile
   belongs_to :type
 
   validates :title, presence: true

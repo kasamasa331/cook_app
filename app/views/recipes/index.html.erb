@@ -11,13 +11,14 @@
   <% @title.each do |post| %>
     <div class="post">
       <div class="header">
-        <h2 class="title"><%= post.title %></h2>
+        <h2 class="title"><%= link_to post.title, recipe_show_path(post) %></h2>
         <p class="timestamp"><%= post.created_at.strftime("%B %d, %Y") %></p>
       </div>
       <div class="body">
         <p class="content"><%= Country.find(post.country_id).name %></p>
         <p class="description"><%= post.description %></p> 
       </div>
+      
       <div class="image">
         <%= image_tag(post.image) if post.image.attached? %>
       </div>
