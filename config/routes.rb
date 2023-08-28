@@ -16,8 +16,15 @@ Rails.application.routes.draw do
   get 'recipes/edit/:id', to: 'recipes#edit', as: 'edit_recipe'
   post 'recipes/edit/:id', to: 'recipes#update', as: 'update_recipe'
   get 'recipes/show/:id', to: 'recipes#show', as: 'recipe_show'
-  #　レシピコメント
-  post 'recipes/:id/comments', to: 'recipes#create_comment', as: 'create_comment_recipe'
+  # #　レシピコメント
+  # post 'recipes/:id/comments', to: 'recipes#create_comment', as: 'create_comment_recipe'
+ 
+   # ここから追加
+  # CommentsController
+  get 'recipes/show/:recipe_id/comments/new', to: 'posts#new', as: 'new_comment'
+  post 'recipes/show/:recipe_id/comments/new', to: 'posts#create', as: 'create_comment'
+  # ここまで
+
   #　国
   get 'home/country', to: 'home#country', as: 'home_country'
  

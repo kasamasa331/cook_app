@@ -48,26 +48,7 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
-    @comment = Post.new
-    @comments = Post.where(id: params[:id])  
-  end
-
-  def create_comment
-    @comment = Post.new(post_params)
-    @comment.user = current_user
-    if @comment.save
-      redirect_to recipe_show_path, notice: 'コメントしました'
-    else
-      @recipe = Recipe.find(params[:id])
-      @comments = Post.where(id: params[:id])
-      render :show, status: :unprocessable_entity
-    end
-  end
-
-  private
-  def post_params
-    params.require(:post).permit(:comment, :recipe_id).merge(recipe_id: params[:recipe_id], user_id: current_user.id)
+    @recipe = Recipe.find(params[:id]) 
   end
 
 

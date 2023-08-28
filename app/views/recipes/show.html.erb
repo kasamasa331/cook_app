@@ -42,6 +42,17 @@
   </div>
 </div>
 
+<div class="comment-list">
+  <% @comments.each do |comment| %>
+    <div class="comment">
+      <div class="body">
+        <p class="content"><%= comment.content %></p>
+        <p class="timestamp"><%= comment.created_at.strftime("%B %d, %Y") %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
+
   <div class="recipe-image">
     <%= image_tag @recipe.image, class: "recipe-image" if @recipe.image.attached? %>
   </div>

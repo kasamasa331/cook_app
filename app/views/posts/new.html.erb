@@ -1,38 +1,74 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 mx-auto post-form-container">
-      <h2 class="h2">レシピ投稿</h2>
-      <%= form_with(url: create_post_path, local: true, method: :post, html: { class: 'post-form' } ) do |f| %>
+<div class="recipe-details">
+  <h2 class="recipe-title"><%= @recipe.title %></h2>
+  
+  <div class="recipe-details-section">
+    <h3 class="section-title">説明</h3>
+    <p class="recipe-description"><%= @recipe.description %></p>
+  </div>
 
-        <div class="form-group">
-          <%= f.label "料理名", class: 'form-label' %>
-          <%= f.text_field :title, class: 'form-control' %>
-        </div>
+  <div class="recipe-details-section">
+    <h3 class="section-title">調理方法</h3>
+    <p class="recipe-cooking-method"><%= @recipe.cooking_method %></p>
+  </div>
+  
+  <div class="recipe-details-section">
+    <h3 class="section-title">国</h3>
+    <p class="recipe-country"><%= Country.find(@recipe.country_id).name %></p>
+  </div>
 
-        <div class="form-group">
-          <%= f.label "説明", class: 'form-label' %>
-          <%= f.text_area :description, class: 'form-control' %>
-        </div>
+  <div class="recipe-details-section">
+    <h3 class="section-title">調理時間</h3>
+    <p class="recipe-cooking-time"><%= @recipe.cooking_time %> 分</p>
+  </div>
 
-        <div class="form-group">
-          <%= f.label "材料", class: 'form-label' %>
-          <%= f.text_area :ingredients, class: 'form-control' %>
-        </div>  
-                   
+  <div class="recipe-details-section">
+    <h3 class="section-title">何料理</h3>
+    <p class="recipe-category"><%= Category.find(@recipe.category_id).name %></p>
+  </div>
 
-        <div class="form-group image-upload">
-          <%= f.label "画像", class: 'form-label' %>
-          <div class="image-preview" id="imagePreview">
-            <img src="" alt="Image Preview" class="image-preview__image">
-            <span class="image-preview__default-text">Image will be displayed here</span>
-          </div>
-          <%= f.file_field :image, class: 'form-control-file', id: 'imageUpload' %>
+  <div class="recipe-details-section">
+    <h3 class="section-title">料理のタイプ</h3>
+    <p class="recipe-type"><%= Type.find(@recipe.type_id).name %></p>
+  </div>
+
+<div class="comment-form-container">
+  <div class="comment">
+    <%= form_with(url: create_comment_path(@recipe), model: @comment, local: true, method: :post) do |f| %>
+
+      <% if @comment.errors.any? %>
+        <ul>
+          <% @comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <div class="form">
+        <div class="textarea">
+          <%= f.label "コメント", class: 'form-label' %>
+          <%= f.text_field :comment, class: 'form-control' %>
         </div>
 
         <div class="button-group">
-          <%= f.submit '投稿する', class: 'btn btn-primary' %>
+          <%= f.submit '送信', class: 'btn btn-primary' %>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
+</div>
+
+<div class="comment-list">
+  <% @comments.each do |comment| %>
+    <div class="comment">
+      <div class="body">
+        <p class="comment"><%= comment.comment %></p>
+        <p class="user">投稿者:<%= UserProfile.find(comment.user_id).name %></p>
+        <p class="timestamp">投稿時間:<%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="recipe-image">
+  <%= image_tag @recipe.image, class: "recipe-image" if @recipe.image.attached? %>
 </div>
