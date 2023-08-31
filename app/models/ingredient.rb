@@ -1,4 +1,3 @@
 class Ingredient < ApplicationRecord
-  belongs_to :category
-  belongs_to :recipe
+  has_and_belongs_to_many :recipe
 end

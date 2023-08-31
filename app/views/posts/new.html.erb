@@ -23,12 +23,20 @@
 
   <div class="recipe-details-section">
     <h3 class="section-title">何料理</h3>
-    <p class="recipe-category"><%= Category.find(@recipe.category_id).name %></p>
+    <% if @recipe.category_id.present? %>
+      <p class="recipe-category"><%= Category.find(@recipe.category_id).name %></p>
+    <% else %>
+      <p class="recipe-category">カテゴリ未指定</p>
+    <% end %>
   </div>
 
   <div class="recipe-details-section">
     <h3 class="section-title">料理のタイプ</h3>
-    <p class="recipe-type"><%= Type.find(@recipe.type_id).name %></p>
+    <% if @recipe.type_id.present? %>
+      <p class="recipe-type"><%= Type.find(@recipe.type_id).name %></p>
+    <% else %>
+      <p class="recipe-type">タイプ未指定</p>
+    <% end %>
   </div>
 
 <div class="comment-form-container">

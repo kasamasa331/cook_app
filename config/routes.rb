@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-
+  
   # レシピ
   post 'recipes/new', to: 'recipes#create', as: 'create_recipe'
   get 'home/recipe', to: 'home#recipe', as: 'home_recipe'
@@ -34,6 +34,9 @@ Rails.application.routes.draw do
   get 'users/show',to: 'users#show', as: 'users_show'
   #resources :users, only: [:show, :edit, :update]
   get '/mypage',to: 'users#mypage', as:'users_mypage'
+
+
+
 
   # ユーザープロフィール
   get '/user_profile/edit',to: 'users_profile#edit', as: 'user_profile_edit'
