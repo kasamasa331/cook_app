@@ -19,6 +19,10 @@ Rails.application.routes.draw do
   # #　レシピコメント
   # post 'recipes/:id/comments', to: 'recipes#create_comment', as: 'create_comment_recipe'
  
+  # レシピいいね
+  post 'recipes/:recipe_id/favorites', to: 'favorites#create', as: 'create_favorite'
+  delete 'recipes/:recipe_id/favorites', to: 'favorites#destroy', as: 'destroy_favorite'
+
    # ここから追加
   # CommentsController
   get 'recipes/show/:recipe_id/comments/new', to: 'posts#new', as: 'new_comment'

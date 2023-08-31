@@ -12,4 +12,6 @@ class Recipe < ApplicationRecord
   validates :cooking_method, presence: true
 
   has_one_attached :image
+
+
 end

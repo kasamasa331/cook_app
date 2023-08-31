@@ -9,10 +9,24 @@
         <p class="content"><%= Country.find(post.country_id).name %></p>
         <p class="description"><%= post.description %></p>
       </div>
-
       <div class="image">
         <%= image_tag(post.image) if post.image.attached? %>
       </div>
+      <div class="favorite">
+        <% if current_user %>
+          <% if current_user.favorites.exists?(recipe_id: post.id) %>
+            <!-- お気に入り済みの場合の処理 -->
+            <%= link_to destroy_favorite_path(post.id), method: :delete do %>
+              <span style="color:red;">❤︎</span>
+            <% end %>
+          <% else %>
+            <!-- お気に入り未済みの場合の処理 -->
+            <%= link_to create_favorite_path(post.id), method: :post do %>
+              <span>❤︎</span>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
-  <% end %> 
+  <% end %>
 </div>
