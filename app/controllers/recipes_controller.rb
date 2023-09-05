@@ -11,6 +11,12 @@ class RecipesController < ApplicationController
     render :index
   end
 
+  def type_show
+    @type_id = params[:type_id]
+    @recipes = Recipe.where(type_id: @type_id)
+    render :type_show 
+  end
+
   def new
     @recipe = current_user.recipes.build
 
@@ -51,12 +57,9 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id]) 
   end
 
-
   private
 
   def recipe_params
     params.require(:recipe).permit(:title, :description, :cooking_method, :cooking_time, :country_id, :category_id, :ingredient_id,  :type_id)
   end
 end
-
-

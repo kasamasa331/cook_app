@@ -1,6 +1,21 @@
 class UsersProfileController < ApplicationController
   before_action :authenticate_user!
 
+  def create
+    @post =UserProfile.new(post_params)
+
+    if params[:post][:image]
+      @post.image.attach(params[:post][:image])
+    end
+
+    if @post.save
+      redirect_to index_post_path, notice: '登録しました'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+
   def edit
     @user = current_user
     @user_profile = @user.user_profile

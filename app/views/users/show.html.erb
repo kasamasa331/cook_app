@@ -1,11 +1,4 @@
-<% if user_signed_in? && @user == current_user %>
-  <h1>マイページ</h1>
-<% else %>
-  <h1>ユーザーページ</h1>
-<% end %>
-<h1><%= @user.email %></h1>
-<% if user_signed_in? && @user == current_user %>
-  <%= link_to "プロフィール編集", edit_user_path(current_user) %>
-<% else %>
-  <!-- ここに何か他のコンテンツを記述 -->
-<% end %>
+<div class="form-group pt-4">
+  <%= f.label :name, "名前" %>
+  <%= f.text_field :name, class: 'form-control', value: @user.id %>
+</div>

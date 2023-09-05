@@ -1,3 +1,27 @@
 <div>
-  <h1>国</h1>
-</div>
+  <h1>世界の料理</h1>
+  <h2>地図</h2>
+    <div class="map-image">
+      <%= image_tag("https://4.bp.blogspot.com/-ZTm9z2mWlMM/WHxPee4WB4I/AAAAAAABBIE/FhTLMqTvy_gmtZCKQxqfad_Fdge-oXx6gCLcB/s800/sekaichizu.png") %> 
+    </div>
+  <h2><%= @random_country_name %>の料理</h2>
+  <div class="recipe-container">
+      <% if @random_country_recipes.any? %>
+        <div class="recipe-list">
+          <% @random_country_recipes.each do |recipe| %>
+            <div class="recipe">
+              <div class="recipe-image">
+                <%= image_tag(recipe.image) if recipe.image.attached? %>
+              </div>
+              <div class="recipe-title">
+                <%= recipe.title %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <%= paginate @random_country_recipes %>
+      <% else %>
+        <p>ランダムな国のレシピはありません。</p>
+      <% end %>
+    </div>
+  </div>

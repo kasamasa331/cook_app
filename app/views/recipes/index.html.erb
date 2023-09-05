@@ -1,3 +1,19 @@
+<div class="search-container">
+  <%= form_with url: index_recipe_path, class: "form", method: :get, local: true do |form| %>
+    <input class="input" type="text" name="title" placeholder="タイトルで検索" value="<%= params[:title] %>">
+    <%= form.submit "検索", class: "button" %>
+  <% end %>
+</div>
+
+<div class="type-recipe">
+  <%= form_with url: type_show_recipe_path(type_id: 1), method: :get do |form| %>
+    <%= form.submit 'サラダ', class: 'btn btn-default' %>
+  <% end %>
+</div>
+
+
+
+
 <div class="post-list">
   <% @title.each do |post| %>
     <div class="post">
@@ -16,13 +32,17 @@
         <% if current_user %>
           <% if current_user.favorites.exists?(recipe_id: post.id) %>
             <!-- お気に入り済みの場合の処理 -->
-            <%= link_to destroy_favorite_path(post.id), method: :delete do %>
-              <span style="color:red;">❤︎</span>
+            <%= form_with url: destroy_favorite_path(post.id), method: :delete do %>
+              <%= button_tag type: 'submit', class: 'btn btn-default' do %>
+                <span style="color:red;">❤いいね済み</span>
+              <% end %>
             <% end %>
           <% else %>
             <!-- お気に入り未済みの場合の処理 -->
-            <%= link_to create_favorite_path(post.id), method: :post do %>
-              <span>❤︎</span>
+            <%= form_with url: create_favorite_path(post.id), method: :post do %>
+              <%= button_tag type: 'submit', class: 'btn btn-default' do %>
+                <span>❤いいね</span>
+              <% end %>
             <% end %>
           <% end %>
         <% end %>
@@ -30,3 +50,4 @@
     </div>
   <% end %>
 </div>
+

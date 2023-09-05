@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'recipes/edit/:id', to: 'recipes#edit', as: 'edit_recipe'
   post 'recipes/edit/:id', to: 'recipes#update', as: 'update_recipe'
   get 'recipes/show/:id', to: 'recipes#show', as: 'recipe_show'
+  get 'recipes/:type_id/types', to: 'recipes#type_show', as: 'type_show_recipe'
   # #　レシピコメント
   # post 'recipes/:id/comments', to: 'recipes#create_comment', as: 'create_comment_recipe'
  
@@ -32,12 +33,14 @@ Rails.application.routes.draw do
   #　国
   get 'home/country', to: 'home#country', as: 'home_country'
  
+  #　国検索ページ
+  get 'countries/index', to: 'countries#index', as: 'country_index'
+ 
   #スライドバー
 
   #ユーザーページ
-  get 'users/show',to: 'users#show', as: 'users_show'
-  #resources :users, only: [:show, :edit, :update]
-  get '/mypage',to: 'users#mypage', as:'users_mypage'
+  get 'users/mypage/:user_id', to: 'users#mypage', as: 'mypage_user'
+
 
 
 
@@ -45,6 +48,7 @@ Rails.application.routes.draw do
   # ユーザープロフィール
   get '/user_profile/edit',to: 'users_profile#edit', as: 'user_profile_edit'
   post '/user_profile/edit',to: 'users_profile#update', as: 'user_profile_update'
+  post 'user_profile/new', to: 'user_profile#create', as: 'create_user_profile'
 
   #投稿PostsController
   get '/', to: 'posts#index', as: 'index_post'

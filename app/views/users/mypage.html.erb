@@ -1,0 +1,53 @@
+<h1>マイページ</h1>
+
+<h2>ユーザーの名前</h2>
+<% if @user_profile %>
+  <p><%= @user_profile.name %></p>
+<% else %>
+  <p>ユーザープロフィールが存在しません。</p>
+<% end %>
+
+<h2>ユーザーの国</h2>
+<% if @user_profile %>
+  <p><%= @user_profile.country.name if @user_profile.country %></p> <!-- ここで所属国を表示 -->
+<% else %>
+  <p>ユーザープロフィールが存在しません。</p>
+<% end %>
+
+<h2>ユーザーが作成したレシピ</h2>
+
+<% if @user_recipes.any? %>
+  <ul>
+    <% @user_recipes.each do |recipe| %>
+      <li><%= recipe.title %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>ユーザーはまだレシピを作成していません。</p>
+<% end %>
+
+<h2>ユーザーお気に入りレシピ</h2>
+<% if @favorite_recipes.any? %>
+  <ul>
+    <% @favorite_recipes.each do |recipe| %>
+      <li><%= recipe.title %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>ユーザーはまだお気に入りにレシピを追加していません。</p>
+<% end %>
+
+<h2>コメント一覧</h2>
+
+<% if @user_comments.any? %>
+  <ul>
+    <% @user_comments.each do |comment| %>
+      <li>
+        <%= comment.comment %>
+        <!-- 他のコメントに関連する情報をここに表示 -->
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>ユーザーはまだコメントしていません。</p>
+<% end %>
